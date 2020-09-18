@@ -2,10 +2,12 @@ import { Row } from "antd";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import VoucherCard from "./VoucherCard";
+import { apiUrl } from "../../config.json";
+
 const UserVoucher = () => {
   const [vouchers, setVouchers] = useState([]);
   const getVouchers = async () => {
-    Axios.get("/api/voucher/user").then((res) => {
+    Axios.get(`${apiUrl}/api/voucher/user`).then((res) => {
       setVouchers(res.data);
     });
   };

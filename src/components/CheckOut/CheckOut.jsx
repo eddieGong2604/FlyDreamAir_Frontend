@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import { Form, Input, Button, Checkbox, Modal } from "antd";
 import Axios from "axios";
+import { apiUrl } from "../../config.json";
+
 const CheckOut = (props) => {
   const [error, setError] = useState("");
   const [booking, setBooking] = useState({});
@@ -10,7 +12,7 @@ const CheckOut = (props) => {
   const onFinish = (values) => {
     Axios({
       method: "post",
-      url: "/api/booking/me",
+      url: `${apiUrl}/api/booking/me`,
       data: {
         voucherCode: values.voucherCode,
         seatingId: props.match.params.seatingId,

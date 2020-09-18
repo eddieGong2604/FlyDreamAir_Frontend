@@ -4,12 +4,13 @@ import { ProfileTwoTone } from "@ant-design/icons";
 import VoucherRedemption from "./VoucherRedemption";
 import Axios from "axios";
 import FrequentFlyerCard from "./FrequentFlyerCard";
+import { apiUrl } from "../../config.json";
 
 const UserCredits = () => {
   const [user, setUser] = useState({});
 
   const getUser = async () => {
-    await Axios.get("/api/user/info").then((res) => setUser(res.data));
+    await Axios.get(`${apiUrl}/api/user/info`).then((res) => setUser(res.data));
   };
   useEffect(() => {
     getUser();

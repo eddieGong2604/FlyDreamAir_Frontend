@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 import { Link } from "react-router-dom";
+import { apiUrl } from "../../config.json";
 
 const { Meta } = Card;
 const SeatingOption = ({ seating }) => {

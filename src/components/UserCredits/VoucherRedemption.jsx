@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Modal, Button, Form, Input } from "antd";
 import Axios from "axios";
 import "./UserCredits.css";
+import { apiUrl } from "../../config.json";
 
 const VoucherRedemption = () => {
   const [visible, setVisible] = useState(false);
@@ -25,7 +26,7 @@ const VoucherRedemption = () => {
   const onFinish = (values) => {
     Axios({
       method: "post",
-      url: "/api/voucher/me",
+      url: `${apiUrl}/api/voucher/me`,
       data: {
         points: Number.parseFloat(values.points),
       },

@@ -1,6 +1,7 @@
 import React, { Component, useRef, useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import Axios from "axios";
+import { apiUrl } from "../../config.json";
 
 const layout = {
   labelCol: { span: 5 },
@@ -17,7 +18,7 @@ const SignUpComponent = () => {
   const onFinish = (values) => {
     Axios({
       method: "post",
-      url: "/api/auth/signup",
+      url: `${apiUrl}/api/auth/signup`,
       data: values,
     })
       .then((res) => {

@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Avatar } from "antd";
 import "./UserCredits.css";
 import VoucherRedemption from "./VoucherRedemption";
+import { apiUrl } from "../../config.json";
 
 const { Meta } = Card;
 

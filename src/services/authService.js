@@ -3,10 +3,10 @@ import { apiUrl } from "../config.json";
 import httpService from "./httpService";
 import Cookies from "universal-cookie";
 
-const apiEndpoint = apiUrl + "/auth";
+const apiEndpoint = apiUrl;
 const cookies = new Cookies();
 export const login = async (credentials) => {
-  await httpService.post(apiEndpoint + "/signin", credentials);
+  await httpService.post(apiEndpoint + "/api/auth/signin", credentials);
 };
 export const logout = () => {
   Cookies.remove("accessToken");
