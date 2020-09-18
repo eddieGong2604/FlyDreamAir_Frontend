@@ -19,15 +19,19 @@ const tabStyle = {
   marginLeft: "-100px",
 };
 
-const Home = () => (
-  <Tabs defaultActiveKey="1" onChange={callback} style={tabStyle}>
-    <TabPane tab="Log In" key="1">
-      <LoginComponent />
-    </TabPane>
-    <TabPane tab="Sign Up" key="2">
-      <SignUpComponent />
-    </TabPane>
-  </Tabs>
-);
+const Home = () => {
+  return (
+    <div>
+      <Tabs defaultActiveKey="1" onChange={callback} style={tabStyle}>
+        <TabPane tab="Log In" key="1">
+          <LoginComponent />
+        </TabPane>
+        <TabPane tab="Sign Up" key="2">
+          <SignUpComponent />
+        </TabPane>
+      </Tabs>
+    </div>
+  );
+};
 
 export default Home;

@@ -1,11 +1,32 @@
-import { Card, Col } from "antd";
 import React from "react";
-const VoucherCard = () => {
+
+import { Card, Col } from "antd";
+import "./voucher.css";
+const VoucherCard = ({ voucher }) => {
   return (
-    <Col span={4}>
-      <Card title="Voucher Code" bordered={true}>
-        Discount :
-      </Card>
+    <Col span={6}>
+      <div class="coupon">
+        <div class="container">
+          <h3>Company Logo</h3>
+        </div>
+        <img
+          height={100}
+          width={"100%"}
+          src="data:image/jpeg;base64,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"
+          alt="Avatar"
+        />
+        <div class="container" style={{ backgroundColor: "white" }}>
+          <h2>
+            <b>{voucher.discount * 100}% OFF YOUR PURCHASE</b>
+          </h2>
+          <p>Apply this to your next booking</p>
+        </div>
+        <div class="container">
+          <p>
+            Use Promo Code: <span class="promo">{voucher.voucherCode}</span>
+          </p>
+        </div>
+      </div>
     </Col>
   );
 };

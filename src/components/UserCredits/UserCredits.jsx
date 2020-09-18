@@ -2,25 +2,21 @@ import React, { useEffect, useState } from "react";
 import { List, Avatar, Button } from "antd";
 import { ProfileTwoTone } from "@ant-design/icons";
 import VoucherRedemption from "./VoucherRedemption";
+import Axios from "axios";
+import FrequentFlyerCard from "./FrequentFlyerCard";
 
 const UserCredits = () => {
   const [user, setUser] = useState({});
+
+  const getUser = async () => {
+    await Axios.get("/api/user/info").then((res) => setUser(res.data));
+  };
   useEffect(() => {
-    setUser({
-      passportNumber: "passportNumber",
-      username: "username",
-      name: "name",
-      ffpoints: 100,
-      statusPoints: 100,
-      status: "status",
-    });
+    getUser();
   }, []);
   return (
     <>
-      <h1>Your Frequent Flyer Points : {user.ffpoints}</h1>
-      <h1>Your Status Points : {user.ffpoints}</h1>
-      <h1>Your Current Status: {user.status}</h1>
-      <VoucherRedemption />
+      <FrequentFlyerCard user={user} />
     </>
   );
 };

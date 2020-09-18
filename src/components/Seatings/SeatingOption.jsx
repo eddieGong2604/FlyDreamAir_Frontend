@@ -3,9 +3,9 @@ import { Card } from "antd";
 import { Link } from "react-router-dom";
 
 const { Meta } = Card;
-const SeatingOption = () => {
+const SeatingOption = ({ seating }) => {
   return (
-    <Link to="/dashboard/checkout">
+    <Link to={`/dashboard/checkout/${seating.seatingId}`}>
       <Card
         hoverable
         style={{ width: 240 }}
@@ -17,13 +17,13 @@ const SeatingOption = () => {
         }
       >
         <Meta
-          title="Business Class"
+          title={`${seating.seatingClass} CLASS`}
           description={
             <>
               {" "}
               <p>Five-star service</p>
               <p>
-                <b>500 AUD</b>
+                <b>{seating.price} AUD</b>
               </p>
             </>
           }

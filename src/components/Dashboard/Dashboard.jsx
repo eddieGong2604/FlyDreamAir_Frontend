@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import "../Dashboard/Dashboard.css";
 import { Route, Switch, Link } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from "antd";
-import { UserOutlined, ProfileOutlined, SendOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  ProfileOutlined,
+  SendOutlined,
+  AreaChartOutlined,
+} from "@ant-design/icons";
 import UserCredits from "../UserCredits/UserCredits";
 import UserBooking from "../UserBookings/UserBooking";
 import UserVoucher from "../UserVouchers/UserVoucher";
@@ -14,7 +19,7 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 const Dashboard = () => {
   return (
-    <Layout style={{ height: "1000px" }}>
+    <Layout style={{ height: "720px" }}>
       <Header className="header">
         <div className="logo" />
       </Header>
@@ -26,6 +31,9 @@ const Dashboard = () => {
             defaultOpenKeys={["sub1"]}
             style={{ height: "100%", borderRight: 0 }}
           >
+            <Menu.Item icon={<AreaChartOutlined />} key="5">
+              <Link to="/dashboard">Dashboard</Link>
+            </Menu.Item>
             <SubMenu
               key="user"
               icon={<UserOutlined />}
@@ -48,7 +56,6 @@ const Dashboard = () => {
             </SubMenu>
 
             <SubMenu key="setting" icon={<ProfileOutlined />} title="Settings">
-              <Menu.Item key="5">Profile Setting</Menu.Item>
               <Menu.Item key="6">
                 <Link to="/dashboard/logout">Log Out</Link>
               </Menu.Item>
@@ -64,28 +71,29 @@ const Dashboard = () => {
               minHeight: 280,
             }}
           >
-            <Route
-              exact
-              path="/dashboard"
-              render={() => <h1>Frequeent Flyer Program Policy</h1>}
-            />
-            <Route
-              path="/dashboard/frequent_flyer/credits"
-              component={UserCredits}
-            />
-            <Route
-              path="/dashboard/frequent_flyer/bookings"
-              component={UserBooking}
-            />
-            <Route
-              path="/dashboard/frequent_flyer/vouchers"
-              component={UserVoucher}
-            />
+            <Switch>
+              <Route exact path="/dashboard" render={() => <></>} />
+              <Route
+                path="/dashboard/frequent_flyer/credits"
+                component={UserCredits}
+              />
+              <Route
+                path="/dashboard/frequent_flyer/bookings"
+                component={UserBooking}
+              />
+              <Route
+                path="/dashboard/frequent_flyer/vouchers"
+                component={UserVoucher}
+              />
+              <Route
+                path="/dashboard/checkout/:seatingId"
+                component={CheckOut}
+              />
 
-            <Route path="/dashboard/logout" component={Logout} />
-            <Route path="/dashboard/flights" component={Flights} />
-            <Route path="/dashboard/flightId" component={Seatings} />
-            <Route path="/dashboard/checkout" component={CheckOut} />
+              <Route path="/dashboard/logout" component={Logout} />
+              <Route path="/dashboard/flights" component={Flights} />
+              <Route path="/dashboard/:flightId" component={Seatings} />
+            </Switch>
           </Content>
         </Layout>
       </Layout>

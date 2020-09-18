@@ -1,14 +1,26 @@
 import { Row } from "antd";
-import React from "react";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
 import SeatingOption from "./SeatingOption";
 
-const Seatings = () => {
+const Seatings = (props) => {
+  const [seatings, setSeatings] = useState([]);
+  const getSeatings = async () => {
+    Axios.get(
+      `/api/seating/flightId=${props.match.params.flightId}`
+    ).then((res) => setSeatings(res.data));
+  };
+
+  useEffect(() => {
+    getSeatings();
+  }, []);
   return (
     <>
-      <h1>Choose your seating: </h1>
+      <h1>Choose your Seating</h1>
       <Row justify="space-around">
-        <SeatingOption />
-        <SeatingOption />
+        {seatings.map((seating) => (
+          <SeatingOption seating={seating} />
+        ))}
       </Row>
     </>
   );

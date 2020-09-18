@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useRef, useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import Axios from "axios";
 
@@ -11,14 +11,30 @@ const tailLayout = {
 };
 
 const SignUpComponent = () => {
+  const [error, setError] = useState("");
+  let btnRef = useRef();
+
   const onFinish = (values) => {
     Axios({
       method: "post",
       url: "/api/auth/signup",
       data: values,
     })
-      .then(console.log)
-      .catch(console.log);
+      .then((res) => {
+        btnRef.current.removeAttribute("disabled");
+        if (res.data.success) {
+          window.location = "/";
+        } else {
+          setError(res.data.message);
+        }
+      })
+      .catch((res) => {
+        setError(res.message);
+      });
+
+    if (btnRef.current) {
+      btnRef.current.setAttribute("disabled", "disabled");
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -64,9 +80,10 @@ const SignUpComponent = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button ref={btnRef} type="primary" htmlType="submit">
           Submit
         </Button>
+        <p style={{ color: "red" }}>{error}</p>
       </Form.Item>
     </Form>
   );
