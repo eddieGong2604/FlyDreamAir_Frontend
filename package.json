@@ -9,6 +9,7 @@
     "antd": "^4.6.3",
     "axios": "^0.20.0",
     "font-awesome": "^4.7.0",
+    "http-proxy-middleware": "^1.0.5",
     "js-cookie": "^2.2.1",
     "js-cookies": "^1.0.4",
     "jwt-decode": "^3.0.0-beta.2",
@@ -18,7 +19,6 @@
     "react-scripts": "3.4.3",
     "universal-cookie": "^4.0.3"
   },
-  "proxy": "https://flydreamair-boot.herokuapp.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
