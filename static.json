@@ -5,7 +5,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "http://localhost:5000"
+      "origin": "${API_URL}"
     }
   }
 }

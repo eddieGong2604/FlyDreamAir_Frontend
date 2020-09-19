@@ -18,7 +18,7 @@
     "react-scripts": "3.4.3",
     "universal-cookie": "^4.0.3"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://flydreamair-boot.herokuapp.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
