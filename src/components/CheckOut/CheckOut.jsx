@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import { Form, Input, Button, Checkbox, Modal } from "antd";
 import Axios from "axios";
 import { apiUrl } from "../../config.json";
+import { useRef } from "react";
 
 const CheckOut = (props) => {
+  let btnRef = useRef();
   const [error, setError] = useState("");
   const [booking, setBooking] = useState({});
   const [visible, setVisible] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const onFinish = (values) => {
+    setLoading(true);
     Axios({
       method: "post",
       url: `${apiUrl}/api/booking/me`,
@@ -18,13 +22,20 @@ const CheckOut = (props) => {
         seatingId: props.match.params.seatingId,
       },
     }).then((res) => {
+      btnRef.current.removeAttribute("disabled");
+
       if (!res.data.message) {
         setBooking(res.data);
         setVisible(true);
+        setLoading(false);
       } else {
         setError(res.data.message);
       }
     });
+
+    if (btnRef.current) {
+      btnRef.current.setAttribute("disabled", "disabled");
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -69,10 +80,11 @@ const CheckOut = (props) => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button ref={btnRef} type="primary" htmlType="submit">
             Checkout
           </Button>
           <p style={{ color: "red" }}>{error}</p>
+          {loading && <LoadingOutlined />}
         </Form.Item>
       </Form>
     </>

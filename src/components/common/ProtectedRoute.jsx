@@ -4,10 +4,17 @@ import { Route, Redirect } from "react-router-dom";
 import auth from "../../services/authService";
 import httpService from "../../services/httpService";
 
-const ProtectedRoute = ({ path, component: Component, render, ...rest }) => {
+const ProtectedRoute = ({
+  path,
+  component: Component,
+  render,
+  user,
+  ...rest
+}) => {
   const [isAuth, setAuth] = useState(true);
 
   useEffect(() => {
+    console.log(user);
     if (window.localStorage.getItem("isLoggedIn")) {
       setAuth(true);
     } else {

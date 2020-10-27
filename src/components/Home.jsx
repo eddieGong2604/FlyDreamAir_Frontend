@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { Tabs } from "antd";
 import LoginComponent from "./Auth/LoginComponent";
 import SignUpComponent from "./Auth/SignUpComponent";
+import AdminSignup from "./AdminSignupComponent/AdminSignup";
 
 const { TabPane } = Tabs;
 
-const callback = (key) => {
-  console.log(key);
-};
+const callback = (key) => {};
 
 const tabStyle = {
   width: "60%",
@@ -28,6 +27,9 @@ const Home = () => {
         </TabPane>
         <TabPane tab="Sign Up" key="2">
           <SignUpComponent />
+        </TabPane>
+        <TabPane tab="Admin Application" key="3">
+          <AdminSignup />
         </TabPane>
       </Tabs>
     </div>

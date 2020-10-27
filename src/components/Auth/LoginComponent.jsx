@@ -5,8 +5,8 @@ import Axios from "axios";
 import httpService from "../../services/httpService";
 import authService from "../../services/authService";
 import { useRef } from "react";
-import { Redirect } from "react-router-dom";
 import Home from "../Home";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const layout = {
   labelCol: { span: 5 },
@@ -17,19 +17,24 @@ const tailLayout = {
 };
 
 const LoginComponent = () => {
+  const [load, setLoad] = useState(false);
+
   let btnRef = useRef();
   const [error, setError] = useState("");
 
   useEffect(() => {}, [error]);
 
   const onFinish = (values) => {
+    setLoad(true);
     authService
       .login(values)
       .then(() => {
+        setLoad(false);
         window.localStorage.setItem("isLoggedIn", "true");
-        window.location = "/dashboard";
+        window.location = "/";
       })
       .catch(() => {
+        setLoad(false);
         setError("Username or Password Invalid");
         btnRef.current.removeAttribute("disabled");
       });
@@ -68,6 +73,7 @@ const LoginComponent = () => {
           Submit
         </Button>
         {error ? <p style={{ color: "red" }}>{error}</p> : null}
+        {load && <LoadingOutlined />}
       </Form.Item>
     </Form>
   );
