@@ -14,7 +14,7 @@ const tailLayout = {
 };
 
 const SignUpComponent = () => {
-  const [error, setError] = useState("");
+  const [error, setError] = useState("");sfsf
   const [load, setLoad] = useState(false);
   let btnRef = useRef();
   const openNotificationWithIcon = (type, message) => {
