@@ -24,7 +24,7 @@ const UserVoucherTable = ({ vouchers }) => {
   const update = async (id) => {
     let voucher = userVouchers.filter((e) => e.voucherId === id)[0];
     let index = userVouchers.indexOf(voucher);
-    await Axios.post(`${apiUrl}/api/voucher/valid/${id}`)
+    await Axios.post(`${apiUrl}/api/voucher/reward/${id}`)
       .then(() => {
         let a = [...userVouchers];
         a[index].valid = !a[index].valid;
