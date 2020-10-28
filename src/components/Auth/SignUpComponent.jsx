@@ -100,6 +100,6 @@ const SignUpComponent = () => {
       </Form.Item>
     </Form>
   );
-};
-
+}
+  
 export default SignUpComponent;
