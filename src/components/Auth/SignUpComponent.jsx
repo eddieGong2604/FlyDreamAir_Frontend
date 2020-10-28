@@ -102,4 +102,4 @@ const SignUpComponent = () => {
   );
 };
   
-export default SignUpComponent;
+export default SignUpComponent
