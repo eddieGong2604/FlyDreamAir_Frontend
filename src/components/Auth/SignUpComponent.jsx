@@ -98,8 +98,8 @@ const SignUpComponent = () => {
         <p style={{ color: "red" }}>{error}</p>
         {load && <LoadingOutlined />}
       </Form.Item>
-    </Form>
+    </Form> 
   );
 };
   
-export default SignUpComponent;
+export default SignUpComponent
