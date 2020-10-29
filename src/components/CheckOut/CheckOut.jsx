@@ -55,7 +55,9 @@ const CheckOut = (props) => {
         visible={visible}
         onCancel={handleCancel}
       >
-        {booking.initialPrice === booking.afterPrice ? (
+
+      <div>
+         {booking.initialPrice === booking.afterPrice ? (
           <h3>Booking Price: {booking.initialPrice} AUD</h3>
         ) : (
           <h3>
@@ -71,6 +73,8 @@ const CheckOut = (props) => {
             Frequent Flyer Points Earned: {" "}
             {booking.ffpointsAdded}
           </h3>
+      </div>
+     
 
       </Modal>
 
