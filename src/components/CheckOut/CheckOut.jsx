@@ -65,6 +65,7 @@ const CheckOut = (props) => {
             {booking.afterPrice} AUD
           </h3>
         )}
+        
          <h3>
             Status Points Earned: {" "}
             {booking.statusPointsAdded} 
